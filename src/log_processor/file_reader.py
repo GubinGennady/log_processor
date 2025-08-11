@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from datetime import datetime
 
 
@@ -14,16 +15,7 @@ def read_logs(file_paths, date_filter=None):
 
         if not os.path.exists(abs_path):
             print(f"ОШИБКА: Файл не существует - {abs_path}")
-            continue
-
-
-
-# def read_logs(file_paths, date_filter=None):
-#     all_logs = []
-#     for path in file_paths:
-#         if not os.path.isfile(path):
-#             print(f"Файл не найден: {path}")
-#             continue
+            sys.exit(5)
 
         try:
             with open(path, 'r') as f:
@@ -38,6 +30,7 @@ def read_logs(file_paths, date_filter=None):
                             else:
                                 all_logs.append(log)
                     except (json.JSONDecodeError, KeyError, ValueError):
+
                         continue
         except IOError as e:
             print(f"Чтение с ошибкой {path}: {str(e)}")

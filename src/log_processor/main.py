@@ -17,7 +17,7 @@ def main():
             date_filter = datetime.strptime(args.date, '%Y-%m-%d').date()
         except ValueError:
             print("Неверный формат даты. Пожалуйста, используйте ГГГГ-ММ-ДД")
-            sys.exit(1)
+            return 'invalid-date\n'
 
     # Чтение логов
     logs = read_logs(args.file, date_filter)
@@ -30,7 +30,7 @@ def main():
     if args.report not in REPORTERS:
         print(f"Неизвестный тип отчета: {args.report}")
         print(f"Доступные отчеты: {', '.join(REPORTERS.keys())}")
-        sys.exit(1)
+        sys.exit(3)
 
     reporter = REPORTERS[args.report]
     report_data = reporter.generate_report(logs)

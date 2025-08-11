@@ -1,3 +1,6 @@
+from src.log_processor.reporters import AverageReporter
+
+
 def test_average_report_with_real_data():
     logs = [
         {"@timestamp": "2025-06-22T13:57:32+00:00", "url": "/api/home", "response_time": 0.1},
